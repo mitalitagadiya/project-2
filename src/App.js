@@ -9,6 +9,7 @@ import Doctors from './Container/Doctors/Doctors';
 import About from './Container/About/About';
 import Contact from './Container/Contact/Contact';
 import Login_signup from './Container/Login_signup/Login_signup';
+import Medicine from './Container/Medicine/Medicine';
  
 
 function App() {
@@ -23,6 +24,8 @@ function App() {
         <Route path={"/about"} exact component={About}/>
         <Route path={"/contact"} exact component={Contact}/>
         <Route path={"/login_signup"} exact component={Login_signup}/>
+        <Route path={"/Medicines"} exact component={Medicine} />
+
       </Switch>
 
       <Footer />
