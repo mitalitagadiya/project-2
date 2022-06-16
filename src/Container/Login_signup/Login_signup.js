@@ -69,8 +69,10 @@ function Login_signup(props) {
                                 </div>
                         }
                         <br></br>
+
                          <div className="text-center"><button type="submit"  className='s-btn appointment-btn scrollto' onClick={() => setReset('true')}>Forgot password</button></div>
-                         
+
+                         <div className="text-center"><button type="submit"  className='s-btn' onClick={() => setReset('true')}>Forgot password</button></div>                     
                     </div>
                 </div>
             </section>

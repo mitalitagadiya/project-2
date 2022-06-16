@@ -1,34 +1,37 @@
 import React from 'react';
 import { Card, CardBody, CardSubtitle, CardText, CardTitle } from "reactstrap";
 
-function List({ Data }) {
+function List({ Data, getId }) {
     return (
         <div>
             {
             Data.map((o, i) => {
                 return (
-                    <Card>
+                    <Card key={i}>
 
                         <CardBody>
                             
-                            <CardTitle tag="h5">
-                                {o.expiry}
+                            <CardTitle tag="h5">                         
+                            {o.name}
                             </CardTitle>
                             
                             <CardSubtitle
                                 className="mb-2 text-muted"
                                 tag="h6"
                             >
-                                {o.name}
+                                {o.price}
                             </CardSubtitle>
 
                             <CardText>
-                                {o.price}
-                            </CardText>
-                            
                             {o.quantity}
+                            </CardText>
+
+                            <button onClick={() => getId(o.id)}>click</button>
+
                         </CardBody>
+    
                     </Card>
+                    
                 )
             })
         }
