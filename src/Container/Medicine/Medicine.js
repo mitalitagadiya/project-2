@@ -41,7 +41,6 @@ function Medicine(props) {
         },
     ];
 
-
     const getId =(id) => {
         console.log(id);
     }
@@ -50,7 +49,6 @@ function Medicine(props) {
         <List
         getId = {getId} 
         Data = {orgData}
-        
         />
     );
     
