@@ -10,6 +10,7 @@ import About from './Container/About/About';
 import Contact from './Container/Contact/Contact';
 import Login_signup from './Container/Login_signup/Login_signup';
 import Medicine from './Container/Medicine/Medicine';
+import Refexample from './Container/Refexample/Refexample';
  
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
         <Route path={"/contact"} exact component={Contact}/>
         <Route path={"/login_signup"} exact component={Login_signup}/>
         <Route path={"/Medicines"} exact component={Medicine} />
+        <Route path={"/refexample"} exact component={Refexample} />
 
       </Switch>
 

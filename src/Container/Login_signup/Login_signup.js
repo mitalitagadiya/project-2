@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 function Login_signup(props) {
     const [user, setUser] = useState('login');
@@ -66,7 +67,7 @@ function Login_signup(props) {
                         }
                         <br></br>
                          <div className="text-center"><button type="submit"  className='s-btn' onClick={() => setReset('true')}>Forgot password</button></div>
-                       
+                         
                     </div>
                 </div>
             </section>
