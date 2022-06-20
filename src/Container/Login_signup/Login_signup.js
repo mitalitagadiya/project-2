@@ -6,7 +6,6 @@ function Login_signup(props) {
     const [user, setUser] = useState('login');
     const [reset, setReset] = useState(false);
 
-    
     let schema = yup.object().shape({
         email: yup.string().required("please enter email id.").email("please enter valid email id."),
         password: yup.string().required("please enter password."),
@@ -92,8 +91,12 @@ function Login_signup(props) {
                                 <div className="text-center">
                                     <br>
                                     </br>
+                                    
                                     <span>Creat a new Account ? </span><button onSubmit={handleSubmit} className='s-btn appointment-btn scrollto' type="Submit">Login</button>
                                     {/* onSubmit={handleSubmit} */}
+
+                                    <span>Creat a new Account ? </span><button className='s-btn appointment-btn scrollto' type="Submit">Login</button>
+                                    onSubmit={handleSubmit}
                                 </div>
                         }
                         <br></br>
