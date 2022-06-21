@@ -3,7 +3,7 @@ import * as yup from 'yup';
 import { Form, Formik, useFormik } from 'formik';
 
 function Login_signup(props) {
-    const [user] = useState('login');
+    const [user, setUser] = useState('login');
     const [reset, setReset] = useState(false);
 
     
