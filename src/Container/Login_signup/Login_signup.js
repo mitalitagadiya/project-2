@@ -19,7 +19,7 @@ function Login_signup(props) {
             email: '',
             password: '',
         }
-    } else if (user === "signup"){
+    } else if (user === "Signup"){
         schemaObj ={
             name: yup.string().required("please enter your name."),
             email: yup.string().required("please enter email id.").email("please enter valid email id."),
@@ -28,7 +28,7 @@ function Login_signup(props) {
         initVal ={
             name: '',
             email: '',
-            password: '',
+            password: ''
         }
     }
 
@@ -103,13 +103,13 @@ function Login_signup(props) {
                                 <div className="text-center">
                                     <br>
                                     </br>
-                                    <span>Already have an Account ? <button onSubmit={handleSubmit} className='s-btn appointment-btn scrollto' type="Submit">Signup</button></span>
+                                    <span>Already have an Account ? <button onSubmit={handleSubmit} onClick={() => {setReset('false') ; setUser("Signup")}} className='s-btn appointment-btn scrollto' type="Submit">Signup</button></span>
                                 </div>
                                 :
                                 <div className="text-center">
                                     <br>
                                     </br>
-                                    <span>Creat a new Account ? </span><button onSubmit={handleSubmit} className='s-btn appointment-btn scrollto' type="Submit">Login</button>
+                                    <span>Creat a new Account ? </span><button onSubmit={handleSubmit} onClick={() => {setReset('false') ; setUser("Login")}} className='s-btn appointment-btn scrollto' type="Submit">Login</button>
                                     {/* onSubmit={handleSubmit} */}
                                 </div>
                         }
