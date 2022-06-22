@@ -80,9 +80,6 @@ function Login_signup(props) {
                                     <p className='text-color'>
                                         {errors.name && touched.name ? errors.name: ''}
                                     </p>
-
-                                    <p>{errors.name && touched.name ? errors.name: ''}</p>
-
                                 </div>
                         }
                         <div className="col-md-4 form-group mt-3 mt-md-0">
