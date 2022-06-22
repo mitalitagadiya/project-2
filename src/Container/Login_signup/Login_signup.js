@@ -30,7 +30,15 @@ function Login_signup(props) {
             email: '',
             password: ''
         }
-    } 
+    } else if (reset === "true"){
+        schemaObj ={
+            email: yup.string().required("please enter email id.").email("please enter vaild email id.")
+        }
+        initVal ={
+            email: ''
+        }
+    }
+
 
 
     let schema = yup.object().shape(schemaObj);
@@ -68,14 +76,13 @@ function Login_signup(props) {
                                 null
                                 :
                                 <div className="col-md-4 form-group">
-                                    <input onChange={handleChange} onBlur={handleBlur} type="text" name="name" className="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+                                    <input onChange={handleChange} onBlur={handleBlur} type="text" name="name" className="form-control" id="name" placeholder="Your Name" />
                                     <div className="validate"/>
                                     <p>{errors.name && touched.name ? errors.name: ''}</p>
-                                    {/* <br></br> */}
                                 </div>
                         }
                         <div className="col-md-4 form-group mt-3 mt-md-0">
-                            <input onChange={handleChange} onBlur={handleBlur} type="email" className="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" />
+                            <input onChange={handleChange} onBlur={handleBlur} type="email" className="form-control" name="email" id="email" placeholder="Your Email" />
                             <div className="validate"/>
                             <p>{errors.email && touched.email ? errors.email: ''}</p>
                         </div>
@@ -83,7 +90,7 @@ function Login_signup(props) {
                             reset === "true"?
                                 null :
                                 <div className="col-md-4 form-group mt-3 mt-md-0">
-                                    <input onChange={handleChange} onBlur={handleBlur} type="password" className="form-control" name="password" id="password" placeholder="Your password" data-rule="password" data-msg="Please enter a password" />
+                                    <input onChange={handleChange} onBlur={handleBlur} type="password" className="form-control" name="password" id="password" placeholder="Your password" />
                                     <br></br>
                                     <div className="validate"/>
                                     <p>{errors.password && touched.password ? errors.password: ''}</p>
@@ -103,18 +110,17 @@ function Login_signup(props) {
                                 <div className="text-center">
                                     <br>
                                     </br>
-                                    <span>Already have an Account ? <button onSubmit={handleSubmit} onClick={() => {setReset('false') ; setUser("Signup")}} className='s-btn appointment-btn scrollto' type="Submit">Signup</button></span>
+                                    <span>Already have an Account ? <a className="signup" onSubmit={handleSubmit} onClick={() => {setReset('false') ; setUser("Signup")}} type="submit">Signup</a></span>
                                 </div>
                                 :
                                 <div className="text-center">
                                     <br>
                                     </br>
-                                    <span>Creat a new Account ? </span><button onSubmit={handleSubmit} onClick={() => {setReset('false') ; setUser("Login")}} className='s-btn appointment-btn scrollto' type="Submit">Login</button>
-                                    {/* onSubmit={handleSubmit} */}
+                                    <span>Creat a new Account ? </span> <a className="Login" onSubmit={handleSubmit} onClick={() => {setReset('false') ; setUser("Login")}} type="submit">Login</a>
                                 </div>
                         }
                         <br></br>
-                         <div className="text-center"><button type="submit" className='s-btn appointment-btn scrollto' onClick={() => setReset('true')}>Forgot password</button></div>
+                         <div className="text-center"><a type="submit" className="submit" onSubmit={handleSubmit} onClick={() => {setReset('true') ; setUser("submit")}}>Forgot password</a></div>
                     </Form>
                     </Formik>
                 </div>
