@@ -77,13 +77,12 @@ function Login_signup(props) {
                                 <div className="col-md-4 form-group">
                                     <input onChange={handleChange} onBlur={handleBlur} type="text" name="name" className="form-control" id="name" placeholder="Your Name" />
                                     <div className="validate"/>
-<<<<<<< HEAD
                                     <p className='text-color'>
                                         {errors.name && touched.name ? errors.name: ''}
                                     </p>
-=======
+
                                     <p>{errors.name && touched.name ? errors.name: ''}</p>
->>>>>>> 117c62fe7f5e70b5780972a8fc4d45c2abbde17b
+
                                 </div>
                         }
                         <div className="col-md-4 form-group mt-3 mt-md-0">
