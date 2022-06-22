@@ -1562,7 +1562,7 @@ section {
 }
 
 .contact .php-email-form button[type="submit"]:hover {
-  background: #1c84e3;
+  background: #166ab5;
 }
 
 @-webkit-keyframes animate-loading {
@@ -1751,4 +1751,7 @@ section {
 
 .main-header {
   height: 138px;
+}
+.text-color{
+  color: #dc3545!important;
 }
