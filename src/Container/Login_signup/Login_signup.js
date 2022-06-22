@@ -30,7 +30,15 @@ function Login_signup(props) {
             email: '',
             password: ''
         }
+    } else if (reset == "true") {
+        schemaObj = {
+            email: yup.string().required("Please Enter Email Id.").email("Please Enter Vaild email Id.")
+        }
+        initval = {
+            email: ''
+        }
     }
+
 
 
     let schema = yup.object().shape(schemaObj);
@@ -71,7 +79,7 @@ function Login_signup(props) {
                                     <input onChange={handleChange} onBlur={handleBlur} type="text" name="name" className="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
                                     <div className="validate"/>
                                     <p>{errors.name && touched.name ? errors.name: ''}</p>
-                                    <br></br>
+                                    {/* <br></br> */}
                                 </div>
                         }
                         <div className="col-md-4 form-group mt-3 mt-md-0">
@@ -109,12 +117,12 @@ function Login_signup(props) {
                                 <div className="text-center">
                                     <br>
                                     </br>
-                                    <span>Creat a new Account ? </span><button onSubmit={handleSubmit} onClick={() => {setReset('false') ; setUser("Login")}} className='s-btn appointment-btn scrollto' type="Submit">Login</button>
+                                    <span>Creat a new Account ? </span> <a className="signup" onClick={() => {setReset('false') ; setUser("Login")}} type="Submit">Login</a>
                                     {/* onSubmit={handleSubmit} */}
                                 </div>
                         }
                         <br></br>
-                         <div className="text-center"><button type="submit"  className='s-btn appointment-btn scrollto' onClick={() => setReset('true')}>Forgot password</button></div>
+                         <div className="text-center"> <a type="submit" className="signup" onClick={() => setReset('true')}>Forgot password</a></div>
                     </Form>
                     </Formik>
                 </div>
