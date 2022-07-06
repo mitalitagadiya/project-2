@@ -11,7 +11,9 @@ import Contact from './Container/Contact/Contact';
 import Login_signup from './Container/Login_signup/Login_signup';
 import Medicine from './Container/Medicine/Medicine';
 import Refexample from './Container/Refexample/Refexample';
-import Appointment from './Container/Appointment/Appointment';
+import Appointment from './Container/Appointment/BookAppointment';  
+import BookAppointment from './Container/Appointment/BookAppointment';
+import ListAppointment from './Container/Appointment/ListAppointment';
  
 
 function App() {
@@ -29,6 +31,8 @@ function App() {
         <Route path={"/Medicines"} exact component={Medicine} />
         <Route path={"/refexample"} exact component={Refexample} />
         <Route path={"/appointment"} exact component={Appointment} />
+        <Route path={"/BookAppointment"} exact component={BookAppointment} />
+        <Route path={"/listAppointment"} exact component={ListAppointment} />
 
 
       </Switch>

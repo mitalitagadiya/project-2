@@ -1,8 +1,11 @@
 import { Form, Formik, useFormik } from 'formik';
 import React from 'react';
 import * as yup from 'yup';
+import { NavLink, useHistory } from 'react-router-dom';
 
 function Appointment(props) {
+
+    const history = useHistory();
 
     let schema = yup.object().shape({
         name: yup.string().required("please enter name."),
@@ -24,11 +27,34 @@ function Appointment(props) {
         },
         validationSchema: schema,
         onSubmit: values => {
-            alert(JSON.stringify(values, null, 2));
+            handleInsert(values);
+            history.push("/list_apt");
         },
     });
 
     const { handleChange, handleBlur, handleSubmit, errors, touched } = formik;
+
+    const handleInsert = (values) => {
+        let localData = JSON.parse(localStorage.getItem("book-apt"));
+
+        let id = Math.floor(Math.random()*10000);
+
+        let data =  {
+            id :id,
+            ...values
+        }
+
+        if(localData === null){
+            localStorage.setItem("book-apt", JSON.stringify([data]));
+        } 
+        else 
+        {
+            localData.push(data);
+            localStorage.setItem("book-apt",JSON.stringify(localData));
+        }
+
+        console.log([data]);
+    }
 
     return (
         <div>
@@ -36,13 +62,18 @@ function Appointment(props) {
                 <section id="appointment" className="appointment">
                     <div className="container">
                         <div className="section-title">
-                            <h2>Make an Appointment</h2>
-                            <p>Aenean enim orci, suscipit vitae sodales ac, semper in ex. Nunc aliquam eget nibh eu euismod. Donec dapibus
-                                blandit quam volutpat sollicitudin. Fusce tincidunt sit amet ex in volutpat. Donec lacinia finibus tortor.
-                                Curabitur luctus eleifend odio. Phasellus placerat mi et suscipit pulvinar.</p>
+                            <h2>Appointment</h2>
+                        </div>
+                        <div className='row text-center mb-4'>
+                            <div className='col-6'>
+                                <NavLink exact to={"/BookAppointment"}>Book an Appointment</NavLink>
+                            </div>
+                            <div className='col-6'>
+                                <NavLink exact to={"/listAppointment"}>List an Appointment</NavLink>
+                            </div>
                         </div>
                         <Formik values={formik}>
-                            <Form onSubmit={handleSubmit} action method="post" role="form" className="php-email-form">
+                            <Form onSubmit={handleSubmit} className="php-email-form">
                                 <div className="row">
                                     <div className="col-md-4 form-group">
                                         <input  onChange={handleChange} onBlur={handleBlur} type="text" name="name" className="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
@@ -65,7 +96,7 @@ function Appointment(props) {
                                 </div>
                                 <div className="row">
                                     <div className="col-md-4 form-group mt-3">
-                                        <input  onChange={handleChange} onBlur={handleBlur} type="text" name="date" className="form-control datepicker" id="date" placeholder="Appointment Date" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+                                        <input  onChange={handleChange} onBlur={handleBlur} type="date" name="date" className="form-control datepicker" id="date" placeholder="Appointment Date" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
                                         <p className='text-color'>
                                             {errors.date && touched.date ? errors.date : ''}
                                         </p>
