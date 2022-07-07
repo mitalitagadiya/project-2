@@ -28,14 +28,13 @@ function Appointment(props) {
         validationSchema: schema,
         onSubmit: values => {
             handleInsert(values);
-            history.push("/list_apt");
         },
     });
 
     const { handleChange, handleBlur, handleSubmit, errors, touched } = formik;
 
     const handleInsert = (values) => {
-        let localData = JSON.parse(localStorage.getItem("book-apt"));
+        let localData = JSON.parse(localStorage.getItem("BookAppointment"));
 
         let id = Math.floor(Math.random()*10000);
 
@@ -45,13 +44,15 @@ function Appointment(props) {
         }
 
         if(localData === null){
-            localStorage.setItem("book-apt", JSON.stringify([data]));
+            localStorage.setItem("BookAppointment", JSON.stringify([data]));
         } 
         else 
         {
             localData.push(data);
-            localStorage.setItem("book-apt",JSON.stringify(localData));
+            localStorage.setItem("BookAppointment",JSON.stringify(localData));
         }
+
+        history.push("/ListAppointment");
 
         console.log([data]);
     }
@@ -69,7 +70,7 @@ function Appointment(props) {
                                 <NavLink exact to={"/BookAppointment"}>Book an Appointment</NavLink>
                             </div>
                             <div className='col-6'>
-                                <NavLink exact to={"/listAppointment"}>List an Appointment</NavLink>
+                                <NavLink exact to={"/ListAppointment"}>List an Appointment</NavLink>
                             </div>
                         </div>
                         <Formik values={formik}>

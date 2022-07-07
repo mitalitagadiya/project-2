@@ -22,6 +22,7 @@ function App() {
       <Header />
       
       <Switch>
+
         <Route path={"/"} exact component={Home}/>
         <Route path={"/departments"} exact component={Departments}/>
         <Route path={"/doctors"} exact component={Doctors}/>
@@ -32,8 +33,7 @@ function App() {
         <Route path={"/refexample"} exact component={Refexample} />
         <Route path={"/appointment"} exact component={Appointment} />
         <Route path={"/BookAppointment"} exact component={BookAppointment} />
-        <Route path={"/listAppointment"} exact component={ListAppointment} />
-
+        <Route path={"/ListAppointment"} exact component={ListAppointment} />
 
       </Switch>
 
