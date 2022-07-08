@@ -1,7 +1,7 @@
 import { Form, Formik, useFormik } from 'formik';
-import React from 'react';
 import * as yup from 'yup';
 import { NavLink, useHistory } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
 
 function Appointment(props) {
 
@@ -27,35 +27,60 @@ function Appointment(props) {
         },
         validationSchema: schema,
         onSubmit: values => {
-            handleInsert(values);
+            // alert(JSON.stringify(values, null, 2));
+            handleInsert(values)
+            history.push('/ListAppointment')
+            // console.log(props.location.this.state.id);
         },
     });
 
-    const { handleChange, handleBlur, handleSubmit, errors, touched } = formik;
+    const { handleChange, handleBlur, handleSubmit, errors, touched, values } = formik;
+
+    useEffect(() => {
+    console.log(props.location.state.id);
+        if(props.location.state && localData !== null){
+
+            let localData = JSON.parse(localStorage.getItem("BookAppointment"));
+
+    let fData = localData.filter((l) => l.id !== props.location.state)
+
+    console.log(fData[0]);
+
+    formik.setValues(fData[0]);
+
+    localStorage.setItem("BookAppointment" , JSON.stringify(fData[0]))
+
+        }
+    
+    
+  }, [])
 
     const handleInsert = (values) => {
         let localData = JSON.parse(localStorage.getItem("BookAppointment"));
 
-        let id = Math.floor(Math.random()*10000);
+        let id = Math.floor(Math.random() * 10000);
 
-        let data =  {
-            id :id,
+        let data = {
+            id: id,
             ...values
         }
 
-        if(localData === null){
+        if (localData === null) {
             localStorage.setItem("BookAppointment", JSON.stringify([data]));
-        } 
-        else 
-        {
+        }
+        else {
             localData.push(data);
-            localStorage.setItem("BookAppointment",JSON.stringify(localData));
+            localStorage.setItem("BookAppointment", JSON.stringify(localData));
         }
 
         history.push("/ListAppointment");
 
         console.log([data]);
     }
+
+    const handleUpdateData = (values) =>{
+        console.log(values);
+      }
 
     return (
         <div>
@@ -77,19 +102,19 @@ function Appointment(props) {
                             <Form onSubmit={handleSubmit} className="php-email-form">
                                 <div className="row">
                                     <div className="col-md-4 form-group">
-                                        <input  onChange={handleChange} onBlur={handleBlur} type="text" name="name" className="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+                                        <input value={values.name} onChange={handleChange} onBlur={handleBlur} type="text" name="name" className="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
                                         <p className='text-color'>
                                             {errors.name && touched.name ? errors.name : ''}
                                         </p>
                                     </div>
                                     <div className="col-md-4 form-group mt-3 mt-md-0">
-                                        <input  onChange={handleChange} onBlur={handleBlur} type="email" className="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" />
+                                        <input  value={values.email} onChange={handleChange} onBlur={handleBlur} type="email" className="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" />
                                         <p className='text-color'>
                                             {errors.email && touched.email ? errors.email : ''}
                                         </p>
                                     </div>
                                     <div className="col-md-4 form-group mt-3 mt-md-0">
-                                        <input  onChange={handleChange} onBlur={handleBlur} type="tel" className="form-control" name="phone" id="phone" placeholder="Your Phone" data-rule="minlen:4" data-msg="Please enter at least 4 chars"/>
+                                        <input  value={values.phone} onChange={handleChange} onBlur={handleBlur} type="tel" className="form-control" name="phone" id="phone" placeholder="Your Phone" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
                                         <p className='text-color'>
                                             {errors.phone && touched.phone ? errors.phone : ''}
                                         </p>
@@ -97,13 +122,13 @@ function Appointment(props) {
                                 </div>
                                 <div className="row">
                                     <div className="col-md-4 form-group mt-3">
-                                        <input  onChange={handleChange} onBlur={handleBlur} type="date" name="date" className="form-control datepicker" id="date" placeholder="Appointment Date" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+                                        <input   value={values.date} onChange={handleChange} onBlur={handleBlur} type="date" name="date" className="form-control datepicker" id="date" placeholder="Appointment Date" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
                                         <p className='text-color'>
                                             {errors.date && touched.date ? errors.date : ''}
                                         </p>
                                     </div>
                                     <div className="col-md-4 form-group mt-3">
-                                        <select  onChange={handleChange} onBlur={handleBlur} name="department" id="department" className="form-select">
+                                        <select  value={values.department} onChange={handleChange} onBlur={handleBlur} name="department" id="department" className="form-select">
                                             <option value>Select Department</option>
                                             <option value="Department 1">Department 1</option>
                                             <option value="Department 2">Department 2</option>
@@ -115,7 +140,7 @@ function Appointment(props) {
                                     </div>
                                 </div>
                                 <div className="form-group mt-3">
-                                    <textarea  onChange={handleChange} onBlur={handleBlur} className="form-control" name="message" rows={5} placeholder="Message (Optional)" defaultValue={""} />
+                                    <textarea value={values.message} onChange={handleChange} onBlur={handleBlur} className="form-control" name="message" rows={5} placeholder="Message (Optional)" defaultValue={""} />
                                 </div>
                                 <div className="mb-3">
                                     <div className="loading">Loading</div>
