@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Button, Card, CardBody, CardSubtitle, CardText, CardTitle } from 'reactstrap';
 
 
-function ListAppointment(props) {
+function ListAppointment(props) { 
 
     const history = useHistory();
     let [data, setData] = useState([]);
@@ -35,8 +35,7 @@ function ListAppointment(props) {
 
         history.push("/BookAppointment", {id : id});
         console.log(id);
-    }  
-
+    } 
 
     return (
         <main>
@@ -71,7 +70,7 @@ function ListAppointment(props) {
                                                 {d.email}
                                             </CardSubtitle>
                                             <CardText>
-                                              {d.phone}
+                                              {d.date}
                                             </CardText>
                                             <Button onClick={() => data_app(d.id)}>Edit</Button>
                                             <Button onClick={() => handleDelete(d.id)}>Delete</Button>
